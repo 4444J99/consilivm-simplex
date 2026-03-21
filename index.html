@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victoroff Group | Strategic Asset Architecture</title>
+<style>
+  :root {
+    --bg: #000000;
+    --fg: #ffffff;
+    --muted: rgba(255, 255, 255, 0.65);
+    --border: rgba(255, 255, 255, 0.2);
+    --font-main: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Scroll Progress Indicator */
+  #scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 1px;
+    background: var(--muted);
+    z-index: 1000;
+    width: 0%;
+  }
+
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Navigation */
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 2.5rem 0;
+    z-index: 100;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent);
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .logo {
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    font-weight: 300;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--fg);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 3.5rem;
+  }
+
+  .nav-links a {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--muted);
+    transition: color 0.8s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--fg);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: clamp(32px, 6vw, 64px);
+    font-weight: 200;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-size: clamp(18px, 3vw, 24px);
+    font-weight: 200;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    color: var(--fg);
+  }
+
+  h3 {
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    color: var(--fg);
+  }
+
+  p {
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+
+  /* Sections */
+  section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-of-type {
+    border-bottom: none;
+  }
+
+  #hero {
+    text-align: center;
+    border-bottom: none;
+    align-items: center;
+  }
+
+  #hero p {
+    font-size: 10px;
+    letter-spacing: 0.6em;
+    text-transform: uppercase;
+    margin: 0 auto;
+  }
+
+  /* Grid Layouts for Content */
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    margin-top: 4rem;
+  }
+
+  .service-item {
+    border-left: 1px solid var(--border);
+    padding-left: 2rem;
+  }
+
+  .service-item p {
+    margin-bottom: 0;
+    font-size: 12px;
+  }
+
+  /* Contact Form Minimal */
+  .contact-form {
+    max-width: 500px;
+    margin-top: 3rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    color: var(--fg);
+    font-family: var(--font-main);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    resize: none;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-bottom-color: var(--fg);
+  }
+
+  .contact-form button {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--fg);
+    font-family: var(--font-main);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 1rem 3rem;
+    cursor: pointer;
+    transition: all 0.8s ease;
+  }
+
+  .contact-form button:hover {
+    border-color: var(--fg);
+    background: var(--fg);
+    color: var(--bg);
+  }
+
+  .cta-link {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border: 1px solid var(--fg);
+    color: var(--fg);
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .cta-link:hover {
+    background: var(--fg);
+    color: var(--bg);
+  }
+
+  /* Footer */
+  footer {
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .copyright {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @media (min-width: 768px) {
+    .content-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+<div aria-hidden="true">
+  <canvas id="bg-canvas"></canvas>
+</div>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo">Victoroff Group</a>
+    <div class="nav-links">
+      <a href="media.html">Media</a>
+      <a href="systems.html">Systems</a>
+      <a href="consulting.html">Consulting</a>
+      <a href="archive.html">Archive</a>
+      <a href="contact.html" style="color: var(--fg); font-weight: 400; border-bottom: 1px solid var(--fg); padding-bottom: 2px;">Request Access</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section id="hero">
+    <div class="container reveal">
+      <h1>Victoroff Group</h1>
+      <p class="descriptor">Strategic Asset Architecture</p>
+    </div>
+  </section>
+
+  <section id="media">
+    <div class="container">
+      <h2 class="reveal">Media</h2>
+      <p class="reveal">We architect digital presence. Focusing on structural integrity and aesthetic precision, our media division engineers communication frameworks that establish authority and command attention without demanding it.</p>
+      
+      <div class="content-grid">
+        <div class="service-item reveal">
+          <h2>Bespoke Reporting</h2>
+          <p>White-labeled, presentation-grade documentation systems designed for absolute clarity and professional delivery to high-tier stakeholders.</p>
+        </div>
+        <div class="service-item reveal">
+          <h2>Longitudinal Visualization</h2>
+          <p>Advanced data visualization capturing structural evolution and historical performance tracking over extended cycles to measure true growth.</p>
+        </div>
+        <div class="service-item reveal">
+          <h2>Presence Infrastructure</h2>
+          <p>Refining digital identity through methodical design integration and controlled, intentional positioning that separates signal from noise.</p>
+        </div>
+      </div>
+      
+      <div class="reveal" style="margin-top: 4rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 2rem;">
+        <a href="media.html" style="color: var(--muted); text-decoration: none; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.6s ease;">View Division →</a>
+        <a href="contact.html?ref=media" class="cta-link">Initiate Presence Audit</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="systems">
+    <div class="container">
+      <h2 class="reveal">Systems</h2>
+      <p class="reveal">Autonomous infrastructure. We build silent, perpetual systems designed to operate at scale. Our architecture supports complex, multi-tenant organizational structures with seamless continuity.</p>
+      
+      <div class="content-grid">
+        <div class="service-item reveal">
+          <h2>Deep-Crawl Architecture</h2>
+          <p>Proprietary recursive indexing systems capable of holistic structural analysis across distributed digital environments.</p>
+        </div>
+        <div class="service-item reveal">
+          <h2>Automated Schedules</h2>
+          <p>Precision-timed operational crons that execute diagnostic routines and recurring workflows without human intervention.</p>
+        </div>
+        <div class="service-item reveal">
+          <h2>Organizational Scaling</h2>
+          <p>Secure, isolated data environments accommodating sophisticated team hierarchies and multi-tiered access models for enterprise operations.</p>
+        </div>
+      </div>
+      
+      <div class="reveal" style="margin-top: 4rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 2rem;">
+        <a href="systems.html" style="color: var(--muted); text-decoration: none; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.6s ease;">View Division →</a>
+        <a href="contact.html?ref=systems" class="cta-link">Request Infrastructure Build</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="consulting">
+    <div class="container">
+      <h2 class="reveal">Consulting</h2>
+      <p class="reveal">Diagnostic intelligence. We provide high-level, data-driven audits of existing infrastructure, identifying structural bottlenecks and optimizing pathways for scalable digital value.</p>
+      
+      <div class="content-grid">
+        <div class="service-item reveal">
+          <h2>Structural Audits</h2>
+          <p>Comprehensive algorithmic analysis of technical performance, aesthetic cohesion, and conversion architecture to isolate inefficiencies.</p>
+        </div>
+        <div class="service-item reveal">
+          <h2>Strategic Alignment</h2>
+          <p>Executive advisory focusing on macro-level operational synchronization and institutional longevity within your specific market.</p>
+        </div>
+        <div class="service-item reveal">
+          <h2>Asset Optimization</h2>
+          <p>Targeted interventions designed to elevate the fundamental worth and operational efficiency of your primary digital properties.</p>
+        </div>
+      </div>
+      
+      <div class="reveal" style="margin-top: 4rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 2rem;">
+        <a href="consulting.html" style="color: var(--muted); text-decoration: none; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.6s ease;">View Division →</a>
+        <a href="contact.html?ref=consulting" class="cta-link">Initialize Diagnostic Intelligence</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="archive">
+    <div class="container">
+      <h2 class="reveal">Archive</h2>
+      <p class="reveal">The repository of foundational frameworks. An exclusive collection of proven templates, legal documentation, and standardized operational procedures utilized by established institutions.</p>
+      
+      <div class="content-grid">
+        <div class="service-item reveal">
+          <h2>Proprietary Libraries</h2>
+          <p>Highly structured, readily deployable operational templates engineered for immediate institutional integration and rapid deployment.</p>
+        </div>
+        <div class="service-item reveal">
+          <h2>Historical Records</h2>
+          <p>Secured longitudinal data retaining the complete evolutionary history of organizational audits and strategic shifts for internal review.</p>
+        </div>
+      </div>
+      
+      <div class="reveal" style="margin-top: 4rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 2rem;">
+        <a href="archive.html" style="color: var(--muted); text-decoration: none; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.6s ease;">View Division →</a>
+        <a href="contact.html?ref=archive" class="cta-link">License the Frameworks</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="closing">
+    <div class="container text-center reveal" style="text-align: center;">
+      <h2 style="font-size: 32px; font-weight: 100; letter-spacing: 0.4em; text-transform: uppercase; margin-bottom: 2rem;">Secure Your Digital Legacy</h2>
+      <p style="margin: 0 auto 4rem auto; font-size: 14px; font-weight: 200; color: var(--muted); max-width: 500px;">Access to diagnostic intelligence and architectural systems is restricted to established entities. We review inquiries chronologically.</p>
+      <a href="contact.html" class="cta-link" style="padding: 1.5rem 4rem; font-size: 12px;">Request Access</a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container reveal">
+      <h2>Contact</h2>
+      <p>Inquiries regarding diagnostic intelligence and systems architecture are reviewed chronologically. Access is restricted to established entities.</p>
+      
+      <form class="contact-form">
+        <input type="text" placeholder="Entity Name" required>
+        <input type="email" placeholder="Correspondence Address" required>
+        <textarea rows="3" placeholder="Nature of Inquiry" required></textarea>
+        <button type="submit">Submit Inquiry</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <p class="copyright">© 2026 Victoroff Group. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Intersection Observer for slow reveals
+  const observerOptions = {
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px"
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Background Canvas: Calm, controlled particles
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  const progressBar = document.getElementById('scroll-progress');
+  
+  let width, height;
+  let particles = [];
+  
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+    initParticles();
+  }
+
+  class Particle {
+    constructor() {
+      this.reset();
+      this.y = Math.random() * height;
+    }
+    reset() {
+      this.x = Math.random() * width;
+      this.y = height + Math.random() * 100;
+      this.size = Math.random() * 0.8 + 0.2;
+      this.speedY = -(Math.random() * 0.05 + 0.01);
+      this.angle = Math.random() * Math.PI * 2;
+      this.angleSpeed = Math.random() * 0.001 + 0.0005;
+      this.opacity = Math.random() * 0.1 + 0.02;
+    }
+    update() {
+      this.y += this.speedY;
+      this.angle += this.angleSpeed;
+      this.x += Math.sin(this.angle) * 0.05;
+      if (this.y < -10) { this.reset(); this.y = height + 10; }
+    }
+    draw() {
+      ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function initParticles() {
+    particles = [];
+    const count = Math.min(Math.floor((width * height) / 35000), 50);
+    for (let i = 0; i < count; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const heightCalc = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / heightCalc) * 100;
+    progressBar.style.width = scrolled + "%";
+    
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  animate();
+</script>
+
+</body>
+</html>

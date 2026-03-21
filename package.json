@@ -1,0 +1,12 @@
+{
+  "name": "victoroff-group-tests",
+  "version": "1.0.0",
+  "description": "Expansive testing suite for Victoroff Group landing page",
+  "devDependencies": {
+    "@playwright/test": "^1.42.0",
+    "@axe-core/playwright": "^4.8.5"
+  },
+  "scripts": {
+    "test": "playwright test"
+  }
+}

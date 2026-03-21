@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victoroff Group | Archive</title>
+<style>
+  :root {
+    --bg: #000000;
+    --fg: #ffffff;
+    --muted: rgba(255, 255, 255, 0.65);
+    --border: rgba(255, 255, 255, 0.2);
+    --font-main: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: var(--bg); color: var(--fg);
+    font-family: var(--font-main); line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+  
+  header {
+    padding: 2.5rem 0; border-bottom: 1px solid var(--border);
+  }
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .logo {
+    font-size: 11px; letter-spacing: 0.4em; font-weight: 300;
+    text-transform: uppercase; text-decoration: none; color: var(--fg);
+  }
+  .back-link {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    text-decoration: none; color: var(--muted); transition: color 0.8s ease;
+  }
+  .back-link:hover { color: var(--fg); }
+
+  .cta-link {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border: 1px solid var(--fg);
+    color: var(--fg);
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .cta-link:hover {
+    background: var(--fg);
+    color: var(--bg);
+  }
+
+  main { padding: 8rem 0; min-height: 80vh; }
+  h1 { font-size: 36px; font-weight: 200; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 2rem; }
+  p.lead { font-size: 14px; font-weight: 300; color: var(--muted); max-width: 600px; margin-bottom: 4rem; line-height: 1.8; }
+  
+  .details-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; }
+  @media (min-width: 768px) { .details-grid { grid-template-columns: 1fr 1fr; } }
+  
+  .detail-box { border-top: 1px solid var(--border); padding-top: 2rem; }
+  .detail-box h3 { font-size: 12px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem; color: var(--fg); }
+  .detail-box p { font-size: 12px; color: var(--muted); }
+
+  footer { padding: 4rem 0; text-align: center; border-top: 1px solid var(--border); }
+  .copyright { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="index.html" class="logo">Victoroff Group</a>
+      <a href="index.html" class="back-link">Return to Index</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <h1>Archive</h1>
+    <p class="lead">The repository of foundational frameworks. An exclusive collection of proven templates, legal documentation, and standardized operational procedures utilized by established institutions.</p>
+    
+    <div class="details-grid">
+      <div class="detail-box">
+        <h2>Proprietary Libraries</h2>
+        <p>Highly structured, readily deployable operational templates. From client proposals to executive strategic roadmaps, these documents are engineered for immediate institutional integration.</p>
+      </div>
+      <div class="detail-box">
+        <h2>Historical Records</h2>
+        <p>Secured longitudinal data retaining the complete evolutionary history of organizational audits, structural changes, and strategic shifts for secure internal review.</p>
+      </div>
+      <div class="detail-box">
+        <h2>Legal Frameworks</h2>
+        <p>Standardized templates for high-stakes operational environments. Our archive includes emergency demand letters, structural compliance documents, and asset protection formats.</p>
+      </div>
+      <div class="detail-box">
+        <h2>Marketing Schematics</h2>
+        <p>Blueprint-level documentation for scaling operations. Precise content scheduling frameworks, aesthetic guides, and conversion flow architectures available for licensed implementation.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 8rem; padding-top: 4rem; border-top: 1px solid var(--border); text-align: center;">
+      <h2 style="font-size: 24px; font-weight: 100; letter-spacing: 0.3em; margin-bottom: 2rem;">License the Frameworks</h2>
+      <p style="margin: 0 auto 3rem auto; max-width: 500px;">Deploy proven operational procedures utilized by established institutions.</p>
+      <a href="contact.html?ref=archive" class="cta-link">Request Access</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p class="copyright">© 2026 Victoroff Group. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

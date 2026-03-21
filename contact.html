@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victoroff Group | Contact</title>
+<style>
+  :root {
+    --bg: #000000;
+    --fg: #ffffff;
+    --muted: rgba(255, 255, 255, 0.65);
+    --border: rgba(255, 255, 255, 0.2);
+    --font-main: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: var(--bg); color: var(--fg);
+    font-family: var(--font-main); line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+  
+  header {
+    padding: 2.5rem 0; border-bottom: 1px solid var(--border);
+  }
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .logo {
+    font-size: 11px; letter-spacing: 0.4em; font-weight: 300;
+    text-transform: uppercase; text-decoration: none; color: var(--fg);
+  }
+  .back-link {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    text-decoration: none; color: var(--muted); transition: color 0.8s ease;
+  }
+  .back-link:hover { color: var(--fg); }
+
+  main { padding: 8rem 0; min-height: 80vh; }
+  h1 { font-size: 36px; font-weight: 200; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 2rem; }
+  p.lead { font-size: 14px; font-weight: 300; color: var(--muted); max-width: 600px; margin-bottom: 4rem; line-height: 1.8; }
+  
+  .contact-form { max-width: 500px; }
+  .contact-form input, .contact-form textarea {
+    width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border);
+    color: var(--fg); font-family: var(--font-main); font-size: 12px; letter-spacing: 0.1em;
+    padding: 1rem 0; margin-bottom: 2rem; resize: none;
+  }
+  .contact-form input:focus, .contact-form textarea:focus { outline: none; border-bottom-color: var(--fg); }
+  .contact-form button {
+    background: transparent; border: 1px solid var(--border); color: var(--fg);
+    font-family: var(--font-main); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 1rem 3rem; cursor: pointer; transition: all 0.8s ease;
+  }
+  .contact-form button:hover { border-color: var(--fg); background: var(--fg); color: var(--bg); }
+
+  footer { padding: 4rem 0; text-align: center; border-top: 1px solid var(--border); }
+  .copyright { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="index.html" class="logo">Victoroff Group</a>
+      <a href="index.html" class="back-link">Return to Index</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <h1>Contact</h1>
+    <p class="lead">Inquiries regarding diagnostic intelligence and systems architecture are reviewed chronologically. Access is restricted to established entities.</p>
+    
+    <form class="contact-form">
+      <input type="text" placeholder="Entity Name" required>
+      <input type="email" placeholder="Correspondence Address" required>
+      <textarea rows="4" placeholder="Nature of Inquiry" required></textarea>
+      <button type="submit">Submit Inquiry</button>
+    </form>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p class="copyright">© 2026 Victoroff Group. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
