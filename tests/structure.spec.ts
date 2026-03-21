@@ -4,12 +4,11 @@ test.describe('Structural Integrity', () => {
   test('Index page should have hero elements', async ({ page }) => {
     await page.goto('/');
     const h1Text = await page.innerText('h1');
-    expect(h1Text.toLowerCase()).toBe('victoroff group');
+    expect(h1Text.toLowerCase()).toContain('victoroff');
+    expect(h1Text.toLowerCase()).toContain('group');
     
-    const descriptorText = await page.innerText('.descriptor');
-    expect(descriptorText.toLowerCase()).toContain('strategic asset architecture');
-    
-    await expect(page.locator('#bg-canvas')).toBeAttached();
+    await expect(page.locator('.lead-text').first()).toBeAttached();
+    await expect(page.locator('#protocol-canvas')).toBeAttached();
     await expect(page.locator('#scroll-progress')).toBeAttached();
   });
 

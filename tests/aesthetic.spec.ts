@@ -14,7 +14,7 @@ test.describe('Aesthetic & Language Constraints', () => {
   test('should use authoritative font stack', async ({ page }) => {
     await page.goto('/');
     const fontFamily = await page.evaluate(() => getComputedStyle(document.body).fontFamily);
-    expect(fontFamily).toContain('Helvetica Neue');
+    expect(fontFamily.toLowerCase()).toMatch(/geist|helvetica neue/);
   });
 
   test('should exclude prohibited startup/astrological terminology', async ({ page }) => {

@@ -5,15 +5,15 @@ test.describe('Call to Action (Push to Close)', () => {
     await page.goto('/');
     
     // Header CTA
-    const headerCta = page.locator('nav .nav-links a:has-text("Request Access")');
+    const headerCta = page.locator('nav a.btn-protocol:has-text("Request Access")');
     if (!isMobile) {
       await expect(headerCta).toBeVisible();
     }
 
     // Division CTAs
-    const ctals = page.locator('.cta-link');
+    const ctals = page.locator('.btn-protocol');
     const count = await ctals.count();
-    // 4 divisions + 1 final close = 5
+    // 1 header + 4 divisions + 1 contact form + 1 footer link = 7
     expect(count).toBeGreaterThanOrEqual(5);
   });
 
