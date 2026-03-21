@@ -6,18 +6,19 @@ test.describe('Navigation Link Integrity', () => {
   });
 
   test('should have all division links in header', async ({ page }) => {
-    const navLinks = page.locator('.protocol-tab');
-    await expect(navLinks).toHaveCount(4);
+    const navLinks = page.locator('.nav-tab');
+    await expect(navLinks).toHaveCount(5);
     await expect(navLinks.nth(0)).toHaveText(/HOME/);
     await expect(navLinks.nth(1)).toHaveText(/MEDIA/);
-    await expect(navLinks.nth(2)).toHaveText(/SYS/);
-    await expect(navLinks.nth(3)).toHaveText(/INTEL/);
+    await expect(navLinks.nth(2)).toHaveText(/SYSTEMS/);
+    await expect(navLinks.nth(3)).toHaveText(/ADVISORY/);
+    await expect(navLinks.nth(4)).toHaveText(/ARCHIVE/);
   });
 
   test('should navigate to sections on index page', async ({ page }) => {
-    const sections = ['media', 'systems', 'consult'];
+    const sections = ['media', 'systems', 'advisory', 'archive'];
     for (const s of sections) {
-      await page.click(`.protocol-tab[href="#${s}"]`);
+      await page.click(`.nav-tab[href="#${s}"]`);
       await expect(page).toHaveURL(new RegExp(`#${s}`));
     }
   });

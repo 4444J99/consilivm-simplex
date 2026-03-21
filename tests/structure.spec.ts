@@ -9,7 +9,7 @@ test.describe('Structural Integrity', () => {
     
     await expect(page.locator('.lead').first()).toBeAttached();
     await expect(page.locator('#ui-grid')).toBeAttached();
-    await expect(page.locator('#mobile-protocol-bar')).toBeAttached();
+    await expect(page.locator('#navigation-bar')).toBeAttached();
   });
 
   test('Division pages should have lead content and service items', async ({ page }) => {

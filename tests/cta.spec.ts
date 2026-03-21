@@ -4,15 +4,15 @@ test.describe('Call to Action (Push to Close)', () => {
   test('Index page should have high-intent CTAs in every division', async ({ page }) => {
     await page.goto('/');
     
-    // Bottom Protocol Nav CTA
-    const headerCta = page.locator('.protocol-tab');
-    await expect(headerCta).toHaveCount(4);
+    // Navigation Tabs
+    const headerCta = page.locator('.nav-tab');
+    await expect(headerCta).toHaveCount(5);
 
     // High Intent CTAs
     const ctals = page.locator('.action-btn');
     const count = await ctals.count();
-    // 4 sections + hero = 5
-    expect(count).toBeGreaterThanOrEqual(4);
+    // Hero + 4 divisions + 1 access form = 6
+    expect(count).toBeGreaterThanOrEqual(5);
   });
 
   test('Sub-pages should have closing modules', async ({ page }) => {
