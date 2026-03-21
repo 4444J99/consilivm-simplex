@@ -1,12 +1,19 @@
 {
-  "name": "victoroff-group-tests",
+  "name": "victoroff-group",
   "version": "1.0.0",
-  "description": "Expansive testing suite for Victoroff Group landing page",
+  "description": "Strategic Asset Architecture — Victoroff Group landing page",
   "devDependencies": {
+    "@axe-core/playwright": "^4.8.5",
     "@playwright/test": "^1.42.0",
-    "@axe-core/playwright": "^4.8.5"
+    "http-server": "14.1.1",
+    "postcss-html": "1.8.1",
+    "stylelint": "17.5.0",
+    "stylelint-config-standard": "40.0.0"
   },
   "scripts": {
-    "test": "playwright test --config .config/playwright.config.ts"
+    "dev": "http-server src -p 8080 -o",
+    "lint": "stylelint 'src/**/*.css' 'src/**/*.html' --config .config/stylelint.config.mjs",
+    "test": "playwright test --config .config/playwright.config.ts",
+    "validate": "npm run lint && npm test"
   }
 }

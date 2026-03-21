@@ -236,14 +236,22 @@
   }
 
   .form-input {
-    background: transparent; 
-    border: none; 
-    border-bottom: 1px solid var(--border); 
-    padding: 1.5rem 0; 
-    font-family: var(--font-mono); 
-    color: white; 
-    font-size: 13px; 
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 0;
+    font-family: var(--font-mono);
+    color: var(--fg);
+    font-size: 13px;
     outline: none;
+  }
+
+  .submit-btn {
+    border: none;
+    cursor: pointer;
+    background: var(--fg);
+    color: var(--bg);
+    font-weight: bold;
   }
 
   /* Footer Layout */
@@ -465,7 +473,7 @@
     <form class="access-form">
       <input type="text" placeholder="Name / Organization" class="form-input" required aria-label="Name or Organization">
       <input type="email" placeholder="Email Address" class="form-input" required aria-label="Correspondence Email Address">
-      <button type="submit" class="action-btn" style="border:none; cursor:pointer; background:white; color:black; font-weight:bold;">Finalize Authorization</button>
+      <button type="submit" class="action-btn submit-btn">Finalize Authorization</button>
     </form>
   </section>
 </main>
