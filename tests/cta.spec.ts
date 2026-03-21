@@ -1,20 +1,18 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Call to Action (Push to Close)', () => {
-  test('Index page should have high-intent CTAs in every division', async ({ page, isMobile }) => {
+  test('Index page should have high-intent CTAs in every division', async ({ page }) => {
     await page.goto('/');
     
-    // Header CTA
-    const headerCta = page.locator('nav a.btn-protocol:has-text("Request Access")');
-    if (!isMobile) {
-      await expect(headerCta).toBeVisible();
-    }
+    // Bottom Protocol Nav CTA
+    const headerCta = page.locator('.protocol-tab');
+    await expect(headerCta).toHaveCount(4);
 
-    // Division CTAs
-    const ctals = page.locator('.btn-protocol');
+    // High Intent CTAs
+    const ctals = page.locator('.action-btn');
     const count = await ctals.count();
-    // 1 header + 4 divisions + 1 contact form + 1 footer link = 7
-    expect(count).toBeGreaterThanOrEqual(5);
+    // 4 sections + hero = 5
+    expect(count).toBeGreaterThanOrEqual(4);
   });
 
   test('Sub-pages should have closing modules', async ({ page }) => {

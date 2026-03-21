@@ -7,9 +7,9 @@ test.describe('Structural Integrity', () => {
     expect(h1Text.toLowerCase()).toContain('victoroff');
     expect(h1Text.toLowerCase()).toContain('group');
     
-    await expect(page.locator('.lead-text').first()).toBeAttached();
-    await expect(page.locator('#protocol-canvas')).toBeAttached();
-    await expect(page.locator('#scroll-progress')).toBeAttached();
+    await expect(page.locator('.lead').first()).toBeAttached();
+    await expect(page.locator('#ui-grid')).toBeAttached();
+    await expect(page.locator('#mobile-protocol-bar')).toBeAttached();
   });
 
   test('Division pages should have lead content and service items', async ({ page }) => {

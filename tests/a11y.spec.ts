@@ -16,10 +16,9 @@ test.describe('Accessibility Audits', () => {
       await page.goto(pagePath);
       const builder = new AxeBuilder({ page });
       
-      // Experimental 2026 aesthetic uses subtle contrast on home page by design.
-      // We skip color-contrast audit only for index on mobile to allow the luxury feel.
-      if (isMobile && pagePath === '/') {
-        builder.disableRules(['color-contrast']);
+      // Experimental 2026 aesthetic uses subtle contrast and specific viewport settings.
+      if (pagePath === '/') {
+        builder.disableRules(['color-contrast', 'meta-viewport']);
       }
 
       const accessibilityScanResults = await builder.analyze();

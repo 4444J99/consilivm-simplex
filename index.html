@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VICTOROFF GROUP // MODULAR PROTOCOL</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>VICTOROFF GROUP // MOBILE PRIME PROTOCOL</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..400&family=Geist:wght@100..400&display=swap" rel="stylesheet">
@@ -11,459 +11,321 @@
   :root {
     --bg: #000000;
     --fg: #ffffff;
-    --text-high: #ffffff;
-    --muted: #e0e0e0;
-    --border: rgba(255, 255, 255, 0.25);
+    --muted: #a0a0a0;
+    --border: rgba(255, 255, 255, 0.2);
     --font-mono: "Geist Mono", monospace;
     --font-sans: "Geist", sans-serif;
-    --accent: #ffffff;
+    --safe-area-inset-bottom: env(safe-area-inset-bottom, 20px);
+    --tap-target: 54px; /* Optimized for thumb */
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   html { scroll-behavior: smooth; color-scheme: dark; }
 
   body {
     background-color: var(--bg);
     color: var(--fg);
     font-family: var(--font-sans);
-    line-height: 1.5;
+    line-height: 1.4;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* 2026 Grid Protocol */
-  body::before {
-    content: "";
+  /* Structural Grid - Always Prime */
+  #ui-grid {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background-image: 
       linear-gradient(var(--border) 1px, transparent 1px),
       linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 4vw 4vw;
+    background-size: 10vw 10vw;
     z-index: -1;
     pointer-events: none;
-    opacity: 0.3;
+    opacity: 0.2;
   }
 
-  canvas {
+  /* Mobile Bottom Navigation (Prime Directive) */
+  #mobile-protocol-bar {
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
-    z-index: -2;
-    pointer-events: none;
-  }
-
-  /* Navigation: Protocol Bar */
-  header {
-    position: fixed;
-    top: 0;
     width: 100%;
-    padding: 1.5rem 0;
-    z-index: 1000;
-    border-bottom: 1px solid var(--border);
+    background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
-
-  nav {
+    border-top: 1px solid var(--border);
+    z-index: 2000;
+    padding-bottom: var(--safe-area-inset-bottom);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
   }
 
-  .logo {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.5em;
-    font-weight: 400;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--fg);
-  }
-
-  .nav-protocol {
-    display: flex;
-    gap: 2rem;
-  }
-
-  .nav-protocol a {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--fg);
-    opacity: 0.9;
-    transition: opacity 0.4s ease;
-  }
-
-  .nav-protocol a:hover { opacity: 1; }
-
-  .btn-protocol {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    padding: 0.6rem 1.5rem;
-    border: 1px solid var(--fg);
-    text-decoration: none;
-    color: var(--fg);
-    transition: all 0.4s ease;
-  }
-
-  .btn-protocol:hover {
-    background: var(--fg);
-    color: var(--bg);
-  }
-
-  /* Content Structure */
-  section {
-    min-height: 100vh;
+  .protocol-tab {
+    flex: 1;
+    height: var(--tap-target);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: relative;
-    padding: 4rem 2rem;
+    align-items: center;
+    text-decoration: none;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    transition: color 0.3s ease;
+  }
+
+  .protocol-tab.active { color: var(--fg); }
+  .protocol-tab svg { width: 18px; height: 18px; margin-bottom: 4px; stroke: currentColor; fill: none; }
+
+  /* Content Sections */
+  main {
+    padding-bottom: calc(var(--tap-target) + var(--safe-area-inset-bottom) + 2rem);
+  }
+
+  section {
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     border-bottom: 1px solid var(--border);
   }
 
-  .module-tag {
+  .module-header {
     font-family: var(--font-mono);
     font-size: 10px;
-    color: var(--fg);
+    letter-spacing: 0.3em;
     text-transform: uppercase;
-    letter-spacing: 0.4em;
-    margin-bottom: 2rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    justify-content: space-between;
   }
 
-  .module-tag::before {
-    content: "";
-    width: 20px;
-    height: 1px;
-    background: var(--fg);
+  h1 { font-size: 14vw; font-weight: 100; letter-spacing: -0.02em; line-height: 0.85; margin-bottom: 2rem; text-transform: uppercase; }
+  h2 { font-size: 10vw; font-weight: 100; letter-spacing: -0.01em; line-height: 1; margin-bottom: 1.5rem; text-transform: uppercase; }
+
+  .lead { font-size: 1.1rem; font-weight: 300; color: var(--muted); margin-bottom: 3rem; max-width: 90%; }
+
+  /* Interactive List Items (Tap Optimized) */
+  .protocol-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
   }
 
-  h1, h2 {
-    font-weight: 100;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    line-height: 0.9;
-    color: var(--fg);
+  .protocol-entry {
+    background: var(--bg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
-  h1 { font-size: clamp(4rem, 12vw, 10rem); margin-left: -0.05em; }
-  h2 { font-size: clamp(2rem, 6vw, 4rem); margin-bottom: 2rem; }
-
-  .content-meta {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 4rem;
-    margin-top: 4rem;
-  }
-
-  @media (min-width: 992px) {
-    .content-meta { grid-template-columns: 1fr 1fr; }
-  }
-
-  .lead-text {
-    font-size: 1.25rem;
-    font-weight: 200;
-    color: var(--fg);
-    max-width: 500px;
-  }
-
-  .protocol-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-  }
-
-  .protocol-item {
-    border-top: 1px solid var(--border);
-    padding-top: 1.5rem;
-  }
-
-  .protocol-item h3 {
+  .protocol-entry h3 {
     font-family: var(--font-mono);
     font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
-    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
     color: var(--fg);
   }
 
-  .protocol-item p {
+  .protocol-entry p {
     font-size: 13px;
     color: var(--muted);
     font-weight: 300;
   }
 
-  /* Scroll-Driven Animations */
-  @supports (view-timeline: --section) {
-    .reveal-module {
-      view-timeline: --section;
-      animation: reveal-in linear both;
-      animation-timeline: --section;
-      animation-range: entry 10% cover 40%;
-    }
-
-    @keyframes reveal-in {
-      from { opacity: 0; transform: translateY(100px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-  }
-
-  /* Custom CTA Close */
-  .push-to-close {
-    margin-top: 4rem;
-    padding: 4rem;
-    border: 1px solid var(--border);
-    text-align: center;
-    transition: border-color 0.8s ease;
-  }
-
-  .push-to-close:hover { border-color: var(--fg); }
-
-  .push-to-close h4 {
-    font-size: 14px;
-    letter-spacing: 0.5em;
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-    color: var(--fg);
-  }
-
-  /* Scroll Progress Protocol */
-  #scroll-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 2px;
+  /* High-Intent Close (Tap) */
+  .action-btn {
+    display: block;
+    width: 100%;
     background: var(--fg);
-    z-index: 2000;
-    width: 0%;
+    color: var(--bg);
+    text-align: center;
+    padding: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    text-decoration: none;
+    margin-top: 3rem;
+    transition: opacity 0.3s ease;
+  }
+
+  .action-btn:active { opacity: 0.8; }
+
+  /* Desktop Viewport Perfection (Secondary) */
+  @media (min-width: 1024px) {
+    #ui-grid { background-size: 4vw 4vw; opacity: 0.3; }
+    
+    #mobile-protocol-bar {
+      top: 0;
+      bottom: auto;
+      border-top: none;
+      border-bottom: 1px solid var(--border);
+      height: 80px;
+      padding: 0 4rem;
+      justify-content: flex-end;
+      gap: 4rem;
+    }
+
+    .protocol-tab {
+      flex: none;
+      height: 100%;
+      font-size: 11px;
+    }
+
+    .protocol-tab svg { display: none; }
+
+    main { padding-top: 80px; padding-bottom: 0; }
+    section { padding: 4rem 8rem; }
+    h1 { font-size: 8vw; }
+    h2 { font-size: 4vw; }
+    .lead { font-size: 1.5rem; max-width: 600px; }
+    
+    .protocol-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .action-btn { width: auto; display: inline-block; padding: 1.5rem 4rem; cursor: pointer; }
+    .action-btn:hover { background: transparent; color: var(--fg); border: 1px solid var(--fg); }
   }
 
 </style>
 </head>
 <body>
 
-<div id="scroll-progress" aria-hidden="true"></div>
-<div role="presentation" aria-hidden="true"><canvas id="protocol-canvas"></canvas></div>
+<div id="ui-grid"></div>
 
-<header>
-  <nav>
-    <a href="index.html" class="logo">Victoroff Group // Protocol v1.0</a>
-    <div class="nav-protocol">
-      <a href="#media">01. Media</a>
-      <a href="#systems">02. Systems</a>
-      <a href="#consulting">03. Consulting</a>
-      <a href="#archive">04. Archive</a>
-    </div>
-    <a href="#close" class="btn-protocol">Request Access</a>
-  </nav>
-</header>
+<nav id="mobile-protocol-bar">
+  <a href="#hero" class="protocol-tab active">
+    <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18" stroke-width="1"/></svg>
+    HOME
+  </a>
+  <a href="#media" class="protocol-tab">
+    <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM8 8h8v8H8z" stroke-width="1"/></svg>
+    MEDIA
+  </a>
+  <a href="#systems" class="protocol-tab">
+    <svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20" stroke-width="1"/></svg>
+    SYS
+  </a>
+  <a href="#consult" class="protocol-tab">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke-width="1"/></svg>
+    INTEL
+  </a>
+</nav>
 
 <main>
   <section id="hero">
-    <div class="module-tag">Initialization</div>
+    <div class="module-header">
+      <span>V_PROTOCOL_0.1</span>
+      <span>2026_EDITION</span>
+    </div>
     <h1>VICTOROFF<br>GROUP</h1>
-    <div class="content-meta">
-      <p class="lead-text">Strategic Asset Architecture for the next digital epoch. We build the machines that govern digital value.</p>
-      <div style="display: flex; align-items: flex-end; justify-content: flex-end;">
-        <span style="font-family: var(--font-mono); font-size: 10px; color: var(--fg); text-align: right;">
-          EST. 2026<br>
-          LAT: 40.7128° N<br>
-          LON: 74.0060° W
-        </span>
-      </div>
-    </div>
+    <p class="lead">Strategic Asset Architecture for elite-tier digital operations.</p>
+    <a href="#close" class="action-btn">Initialize Inquiry</a>
   </section>
 
-  <section id="media" class="reveal-module">
-    <div class="module-tag">Module 01 // Presence</div>
-    <h2>Media</h2>
-    <div class="content-meta">
-      <p class="lead-text">Engineering authority through aesthetic precision and structural integrity. Signal over noise.</p>
-      <div class="protocol-grid">
-        <div class="protocol-item">
-          <h3>White-Label Intel</h3>
-          <p>Bespoke reporting frameworks for elite-tier delivery.</p>
+  <section id="media">
+    <div class="module-header"><span>MODULE_01</span><span>PRESENCE</span></div>
+    <h2>MEDIA</h2>
+    <p class="lead">Architecting authority through aesthetic precision. Signal over noise.</p>
+    <div class="protocol-grid">
+      <div class="protocol-list">
+        <div class="protocol-entry">
+          <h3>Bespoke Intel</h3>
+          <p>White-labeled reporting architecture for direct delivery.</p>
         </div>
-        <div class="protocol-item">
-          <h3>Visual Logic</h3>
-          <p>Longitudinal data tracking and structural mapping.</p>
+        <div class="protocol-entry">
+          <h3>Visual Analysis</h3>
+          <p>Longitudinal structural mapping and evolution tracking.</p>
         </div>
       </div>
     </div>
-    <div class="push-to-close">
-      <h4>Architect Your Presence</h4>
-      <a href="#close" class="btn-protocol" style="padding: 1rem 4rem;">Initiate Protocol</a>
-    </div>
+    <a href="#close" class="action-btn">Request Audit</a>
   </section>
 
-  <section id="systems" class="reveal-module">
-    <div class="module-tag">Module 02 // Autonomy</div>
-    <h2>Systems</h2>
-    <div class="content-meta">
-      <p class="lead-text">Silent, perpetual infrastructure designed for infinite scale. Human-independent execution.</p>
-      <div class="protocol-grid">
-        <div class="protocol-item">
+  <section id="systems">
+    <div class="module-header"><span>MODULE_02</span><span>AUTONOMY</span></div>
+    <h2>SYSTEMS</h2>
+    <p class="lead">Silent infrastructure designed for infinite scale. Perpetual execution.</p>
+    <div class="protocol-grid">
+      <div class="protocol-list">
+        <div class="protocol-entry">
           <h3>Deep-Crawl</h3>
           <p>Recursive indexing across distributed digital environments.</p>
         </div>
-        <div class="protocol-item">
+        <div class="protocol-entry">
           <h3>Temporal Crons</h3>
-          <p>Precision-timed operational routines running in perpetuity.</p>
+          <p>Precision-timed routines running in silent perpetuity.</p>
         </div>
       </div>
     </div>
-    <div class="push-to-close">
-      <h4>Deploy Infrastructure</h4>
-      <a href="#close" class="btn-protocol" style="padding: 1rem 4rem;">Secure Access</a>
-    </div>
+    <a href="#close" class="action-btn">Deploy Systems</a>
   </section>
 
-  <section id="consulting" class="reveal-module">
-    <div class="module-tag">Module 03 // Intelligence</div>
-    <h2>Consulting</h2>
-    <div class="content-meta">
-      <p class="lead-text">Diagnostic intelligence. Isolating inefficiencies and optimizing digital revenue pathways.</p>
-      <div class="protocol-grid">
-        <div class="protocol-item">
-          <h3>Structural Audit</h3>
-          <p>Algorithmic analysis of technical and aesthetic cohesion.</p>
+  <section id="consult">
+    <div class="module-header"><span>MODULE_03</span><span>INTEL</span></div>
+    <h2>ADVISORY</h2>
+    <p class="lead">Diagnostic intelligence. Identifying digital bottlenecks and revenue pathways.</p>
+    <div class="protocol-grid">
+      <div class="protocol-list">
+        <div class="protocol-entry">
+          <h3>Structural Audits</h3>
+          <p>Algorithmic technical and aesthetic evaluation.</p>
         </div>
-        <div class="protocol-item">
-          <h3>Asset Optimization</h3>
-          <p>Transforming static properties into economic engines.</p>
-        </div>
-      </div>
-    </div>
-    <div class="push-to-close">
-      <h4>Initialize Diagnostics</h4>
-      <a href="#close" class="btn-protocol" style="padding: 1rem 4rem;">Request Audit</a>
-    </div>
-  </section>
-
-  <section id="archive" class="reveal-module">
-    <div class="module-tag">Module 04 // Records</div>
-    <h2>Archive</h2>
-    <div class="content-meta">
-      <p class="lead-text">Exclusive repository of foundational frameworks and standardized procedures.</p>
-      <div class="protocol-grid">
-        <div class="protocol-item">
-          <h3>Legal Schematics</h3>
-          <p>High-stakes operational templates and compliance formats.</p>
-        </div>
-        <div class="protocol-item">
-          <h3>Growth Blueprints</h3>
-          <p>Licensed procedures for rapid institutional scaling.</p>
+        <div class="protocol-entry">
+          <h3>Asset Growth</h3>
+          <p>Converting properties into performing economic engines.</p>
         </div>
       </div>
     </div>
-    <div class="push-to-close">
-      <h4>License the Vault</h4>
-      <a href="#close" class="btn-protocol" style="padding: 1rem 4rem;">Access Repository</a>
-    </div>
+    <a href="#close" class="action-btn">Begin Audit</a>
   </section>
 
   <section id="close">
-    <div class="module-tag">Termination // Access</div>
-    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-      <h2 style="font-size: clamp(2rem, 8vw, 6rem); margin-bottom: 4rem;">SECURE YOUR LEGACY.</h2>
-      <p style="margin-bottom: 4rem; color: var(--fg); font-weight: 200; font-size: 1.2rem;">Our review process is chronological and restricted. Submit your credentials for authorization.</p>
-      
-      <form style="display: flex; flex-direction: column; gap: 2rem; max-width: 500px; margin: 0 auto;">
-        <input type="text" placeholder="ENTITY_NAME" style="background:transparent; border:none; border-bottom:1px solid var(--border); padding:1rem; font-family:var(--font-mono); color:white; outline:none;" required aria-label="Entity Name">
-        <input type="email" placeholder="AUTH_CHANNEL" style="background:transparent; border:none; border-bottom:1px solid var(--border); padding:1rem; font-family:var(--font-mono); color:white; outline:none;" required aria-label="Correspondence Email">
-        <button type="submit" class="btn-protocol" style="padding: 1.5rem; background:white; color:black; font-weight:bold;">Finalize Inquiry</button>
-      </form>
-    </div>
+    <div class="module-header"><span>FINAL</span><span>ACCESS</span></div>
+    <h2>SECURE LEGACY.</h2>
+    <p class="lead">Inquiries are reviewed chronologically. Submit credentials for authorization.</p>
+    
+    <form style="display: flex; flex-direction: column; gap: 1rem;">
+      <input type="text" placeholder="ENTITY_NAME" style="background:transparent; border:1px solid var(--border); padding:1.25rem; font-family:var(--font-mono); color:white; font-size:12px; outline:none;" required>
+      <input type="email" placeholder="correspondence@channel.xyz" style="background:transparent; border:1px solid var(--border); padding:1.25rem; font-family:var(--font-mono); color:white; font-size:12px; outline:none;" required>
+      <button type="submit" class="action-btn" style="border:none; cursor:pointer;">Finalize Authority</button>
+    </form>
   </section>
 </main>
 
-<footer>
-  <div style="padding: 4rem 2rem; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--fg); opacity: 0.8; text-transform: uppercase; border-top: 1px solid var(--border);">
-    <span>© 2026 VICTOROFF GROUP</span>
-    <span>MODULAR PROTOCOL ACTIVATED</span>
-    <a href="#" style="color: var(--fg); text-decoration: none;">TOP_LEVEL_ACCESS</a>
-  </div>
-</footer>
-
 <script>
-  // Modular Protocol Canvas
-  const canvas = document.getElementById('protocol-canvas');
-  const ctx = canvas.getContext('2d');
-  const progressBar = document.getElementById('scroll-progress');
-  
-  let width, height;
-  let lines = [];
-  
-  function resize() {
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
-  }
+  // Simple active state tracker for mobile bar
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('.protocol-tab');
 
-  class MovingLine {
-    constructor() {
-      this.reset();
-    }
-    reset() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.length = Math.random() * 100 + 50;
-      this.speed = Math.random() * 0.5 + 0.1;
-      this.vertical = Math.random() > 0.5;
-      this.opacity = Math.random() * 0.2;
-    }
-    update() {
-      if (this.vertical) this.y += this.speed;
-      else this.x += this.speed;
-      
-      if (this.x > width || this.y > height) this.reset();
-    }
-    draw() {
-      ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity})`;
-      ctx.lineWidth = 0.5;
-      ctx.beginPath();
-      ctx.moveTo(this.x, this.y);
-      if (this.vertical) ctx.lineTo(this.x, this.y + this.length);
-      else ctx.lineTo(this.x + this.length, this.y);
-      ctx.stroke();
-    }
-  }
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (pageYOffset >= sectionTop - sectionHeight / 3) {
+        current = section.getAttribute('id');
+      }
+    });
 
-  function init() {
-    resize();
-    for (let i = 0; i < 30; i++) lines.push(new MovingLine());
-    animate();
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, width, height);
-    lines.forEach(l => { l.update(); l.draw(); });
-    
-    const winHeight = window.innerHeight;
-    const docHeight = document.documentElement.scrollHeight;
-    const scrolled = (window.scrollY / (docHeight - winHeight)) * 100;
-    progressBar.style.width = scrolled + "%";
-    
-    requestAnimationFrame(animate);
-  }
-
-  window.addEventListener('resize', resize);
-  init();
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href').includes(current)) {
+        link.classList.add('active');
+      }
+    });
+  });
 </script>
 
 </body>
