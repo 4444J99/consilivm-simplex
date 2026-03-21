@@ -13,24 +13,9 @@ test.describe('Call to Action (Push to Close)', () => {
     const count = await ctals.count();
     // Hero + 4 divisions + 1 access form = 6
     expect(count).toBeGreaterThanOrEqual(5);
-  });
 
-  test('Sub-pages should have closing modules', async ({ page }) => {
-    const pages = ['/media.html', '/systems.html', '/consulting.html', '/archive.html'];
-    for (const p of pages) {
-      await page.goto(p);
-      const cta = page.locator('.cta-link');
-      await expect(cta).toBeVisible();
-      await expect(cta).toHaveAttribute('href', /contact.html/);
-    }
-  });
-
-  test('Contact form should maintain authoritative tone', async ({ page }) => {
-    await page.goto('/contact.html');
-    const h1 = await page.innerText('h1');
-    expect(h1.toLowerCase()).toBe('contact');
-    
-    const button = page.locator('button[type="submit"]');
-    await expect(button).toHaveText(/Submit Inquiry/i);
+    // Form button tone
+    const button = page.locator('section#access button[type="submit"]');
+    await expect(button).toHaveText(/Finalize Authorization/i);
   });
 });

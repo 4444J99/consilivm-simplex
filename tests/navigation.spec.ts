@@ -22,13 +22,4 @@ test.describe('Navigation Link Integrity', () => {
       await expect(page).toHaveURL(new RegExp(`#${s}`));
     }
   });
-
-  test('should return to Index from sub-pages', async ({ page }) => {
-    const subPages = ['media.html', 'systems.html', 'consulting.html', 'archive.html', 'contact.html'];
-    for (const subPage of subPages) {
-      await page.goto(`/${subPage}`);
-      await page.click('.logo');
-      await expect(page).toHaveURL(/\/index.html|\/$/);
-    }
-  });
 });

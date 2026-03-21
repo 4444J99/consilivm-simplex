@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Victoroff Group | Strategic Asset Architecture</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -197,6 +197,73 @@
 
   .action-btn:active { background: var(--fg); color: var(--bg); }
 
+  /* Hero Metadata Style */
+  .hero-meta {
+    display: flex; 
+    align-items: flex-end; 
+    justify-content: flex-end;
+  }
+
+  .hero-meta-text {
+    font-family: var(--font-mono); 
+    font-size: 10px; 
+    color: var(--fg); 
+    opacity: 0.95; 
+    text-align: right;
+  }
+
+  /* Section Closure Style */
+  .section-closure {
+    max-width: 800px; 
+    margin: 0 auto; 
+    text-align: center;
+  }
+
+  .closure-lead {
+    margin-bottom: 4rem; 
+    color: var(--fg); 
+    opacity: 0.95; 
+    font-weight: 200; 
+    font-size: 1.2rem;
+  }
+
+  /* Form Layout */
+  .access-form {
+    display: flex; 
+    flex-direction: column; 
+    gap: 1.5rem; 
+    max-width: 600px;
+  }
+
+  .form-input {
+    background: transparent; 
+    border: none; 
+    border-bottom: 1px solid var(--border); 
+    padding: 1.5rem 0; 
+    font-family: var(--font-mono); 
+    color: white; 
+    font-size: 13px; 
+    outline: none;
+  }
+
+  /* Footer Layout */
+  .site-footer {
+    padding: 4rem 2rem; 
+    display: flex; 
+    justify-content: space-between; 
+    font-family: var(--font-mono); 
+    font-size: 10px; 
+    color: var(--fg); 
+    opacity: 0.8; 
+    text-transform: uppercase; 
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-link {
+    color: var(--fg); 
+    text-decoration: none;
+  }
+
   /* Desktop Viewport Perfection */
   @media (min-width: 1024px) {
     #ui-grid { background-size: 4vw 4vw; opacity: 0.15; }
@@ -231,7 +298,9 @@
 </head>
 <body>
 
+<div id="scroll-progress" aria-hidden="true"></div>
 <div id="ui-grid"></div>
+<div role="presentation" aria-hidden="true"><canvas id="protocol-canvas"></canvas></div>
 
 <nav id="navigation-bar">
   <a href="#hero" class="nav-tab active">Home</a>
@@ -256,27 +325,27 @@
     
     <div class="disclosure-list">
       <div class="disclosure-item">
-        <button class="disclosure-trigger">
+        <button class="disclosure-trigger" aria-expanded="false">
           <h3>Bespoke Reporting</h3>
-          <span class="disclosure-icon">+</span>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
         </button>
         <div class="disclosure-content">
           <p>White-labeled, presentation-grade documentation systems designed for absolute clarity and professional delivery to high-tier stakeholders. We transform raw intelligence into refined authority.</p>
         </div>
       </div>
       <div class="disclosure-item">
-        <button class="disclosure-trigger">
+        <button class="disclosure-trigger" aria-expanded="false">
           <h3>Longitudinal Visualization</h3>
-          <span class="disclosure-icon">+</span>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
         </button>
         <div class="disclosure-content">
           <p>Advanced data visualization capturing structural evolution and historical performance tracking over extended cycles. We provide the graphical evidence of growth required for strategic decision-making.</p>
         </div>
       </div>
       <div class="disclosure-item">
-        <button class="disclosure-trigger">
+        <button class="disclosure-trigger" aria-expanded="false">
           <h3>Presence Infrastructure</h3>
-          <span class="disclosure-icon">+</span>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
         </button>
         <div class="disclosure-content">
           <p>Refining digital identity through methodical design integration and controlled, intentional positioning. Our frameworks separate signal from noise, ensuring your market presence is established and immovable.</p>
@@ -293,27 +362,27 @@
     
     <div class="disclosure-list">
       <div class="disclosure-item">
-        <button class="disclosure-trigger">
+        <button class="disclosure-trigger" aria-expanded="false">
           <h3>Deep-Crawl Architecture</h3>
-          <span class="disclosure-icon">+</span>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
         </button>
         <div class="disclosure-content">
           <p>Proprietary recursive indexing systems capable of holistic structural analysis across distributed digital environments. We uncover hidden bottlenecks and structural vulnerabilities through algorithmic rigor.</p>
         </div>
       </div>
       <div class="disclosure-item">
-        <button class="disclosure-trigger">
+        <button class="disclosure-trigger" aria-expanded="false">
           <h3>Automated Schedules</h3>
-          <span class="disclosure-icon">+</span>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
         </button>
         <div class="disclosure-content">
           <p>Precision-timed operational routines that execute diagnostic cycles and recurring workflows without human intervention. We engineer reliability into the foundational layer of your operations.</p>
         </div>
       </div>
       <div class="disclosure-item">
-        <button class="disclosure-trigger">
+        <button class="disclosure-trigger" aria-expanded="false">
           <h3>Organizational Scaling</h3>
-          <span class="disclosure-icon">+</span>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
         </button>
         <div class="disclosure-content">
           <p>Secure, isolated data environments accommodating sophisticated team hierarchies and multi-tiered access models. Our architecture supports expansion without compromising structural integrity.</p>
@@ -330,27 +399,27 @@
     
     <div class="disclosure-list">
       <div class="disclosure-item">
-        <button class="disclosure-trigger">
+        <button class="disclosure-trigger" aria-expanded="false">
           <h3>Structural Audits</h3>
-          <span class="disclosure-icon">+</span>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
         </button>
         <div class="disclosure-content">
           <p>Comprehensive algorithmic analysis of technical performance, aesthetic cohesion, and conversion architecture. We isolate the specific inefficiencies restricting your operational capacity.</p>
         </div>
       </div>
       <div class="disclosure-item">
-        <button class="disclosure-trigger">
+        <button class="disclosure-trigger" aria-expanded="false">
           <h3>Strategic Alignment</h3>
-          <span class="disclosure-icon">+</span>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
         </button>
         <div class="disclosure-content">
           <p>Executive advisory focusing on macro-level operational synchronization and institutional longevity. We ensure your assets are aligned with long-term market objectives.</p>
         </div>
       </div>
       <div class="disclosure-item">
-        <button class="disclosure-trigger">
+        <button class="disclosure-trigger" aria-expanded="false">
           <h3>Asset Optimization</h3>
-          <span class="disclosure-icon">+</span>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
         </button>
         <div class="disclosure-content">
           <p>Targeted interventions designed to elevate the fundamental worth and operational efficiency of your digital properties. We engineer static assets into performing economic engines.</p>
@@ -367,18 +436,18 @@
     
     <div class="disclosure-list">
       <div class="disclosure-item">
-        <button class="disclosure-trigger">
+        <button class="disclosure-trigger" aria-expanded="false">
           <h3>Proprietary Libraries</h3>
-          <span class="disclosure-icon">+</span>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
         </button>
         <div class="disclosure-content">
           <p>Highly structured, readily deployable operational templates engineered for immediate institutional integration. From strategic roadmaps to complex operational scripts.</p>
         </div>
       </div>
       <div class="disclosure-item">
-        <button class="disclosure-trigger">
+        <button class="disclosure-trigger" aria-expanded="false">
           <h3>Historical Records</h3>
-          <span class="disclosure-icon">+</span>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
         </button>
         <div class="disclosure-content">
           <p>Secured longitudinal data retaining the complete evolutionary history of organizational audits and strategic shifts. We maintain the institutional memory required for generational growth.</p>
@@ -393,19 +462,17 @@
     <h2>Secure Legacy.</h2>
     <p class="lead">Review is restricted to established entities. Submit your credentials for authorization.</p>
     
-    <form style="display: flex; flex-direction: column; gap: 1.5rem; max-width: 600px;">
-      <input type="text" placeholder="Name / Organization" style="background:transparent; border:none; border-bottom:1px solid var(--border); padding:1.5rem 0; font-family:var(--font-mono); color:white; font-size:13px; outline:none;" required>
-      <input type="email" placeholder="Email Address" style="background:transparent; border:none; border-bottom:1px solid var(--border); padding:1.5rem 0; font-family:var(--font-mono); color:white; font-size:13px; outline:none;" required>
+    <form class="access-form">
+      <input type="text" placeholder="Name / Organization" class="form-input" required aria-label="Name or Organization">
+      <input type="email" placeholder="Email Address" class="form-input" required aria-label="Correspondence Email Address">
       <button type="submit" class="action-btn" style="border:none; cursor:pointer; background:white; color:black; font-weight:bold;">Finalize Authorization</button>
     </form>
   </section>
 </main>
 
-<footer>
-  <div style="padding: 4rem 2rem; display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10px; color: var(--muted); text-transform: uppercase; border-top: 1px solid var(--border);">
-    <span>© 2026 Victoroff Group</span>
-    <span>All Rights Reserved</span>
-  </div>
+<footer class="site-footer">
+  <span>© 2026 Victoroff Group</span>
+  <span>All Rights Reserved</span>
 </footer>
 
 <script>
@@ -417,37 +484,45 @@
       
       // Close others in same group to maintain stability
       item.parentElement.querySelectorAll('.disclosure-item').forEach(i => {
-        if (i !== item) i.classList.remove('open');
+        if (i !== item) {
+          i.classList.remove('open');
+          i.querySelector('.disclosure-trigger').setAttribute('aria-expanded', 'false');
+        }
       });
       
       if (!isOpen) {
         item.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
       } else {
         item.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
       }
     });
   });
 
-  // Active State Tracker
-  const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('.nav-tab');
+  // IntersectionObserver for Active State (Scroll-Spy)
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5
+  };
 
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      if (pageYOffset >= sectionTop - sectionHeight / 3) {
-        current = section.getAttribute('id');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        document.querySelectorAll('.nav-tab').forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('active');
+          }
+        });
       }
     });
+  }, observerOptions);
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href').includes(current)) {
-        link.classList.add('active');
-      }
-    });
+  document.querySelectorAll('section').forEach(section => {
+    observer.observe(section);
   });
 </script>
 
