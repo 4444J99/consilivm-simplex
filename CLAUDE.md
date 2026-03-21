@@ -52,7 +52,7 @@ Seven Playwright test files in `tests/`, run against both Desktop Chrome and Mob
 |------|-------------------|
 | `structure.spec.ts` | Core components, footer, design token values on `:root` |
 | `navigation.spec.ts` | 5 nav tabs, hash navigation targets |
-| `a11y.spec.ts` | Axe accessibility audit (color-contrast and meta-viewport disabled by design) |
+| `a11y.spec.ts` | Axe accessibility audit (color-contrast disabled by design for experimental aesthetic) |
 | `aesthetic.spec.ts` | Brand compliance: black bg, white text, Geist font, no "Growth Auditor" |
 | `cta.spec.ts` | Exactly 6 CTAs, all section CTAs link to `#access`, submit text |
 | `disclosure.spec.ts` | Open/close interaction, sibling auto-close, aria-expanded state |
