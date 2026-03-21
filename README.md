@@ -1,7 +1,7 @@
 # VICTOROFF GROUP // MOBILE PRIME PROTOCOL
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-white.svg?style=flat-square)](LICENSE)
-[![Protocol](https://img.shields.io/badge/Protocol-v1.0-white?style=flat-square&labelColor=black)](https://victoroff-group.vercel.app)
+[![Protocol](https://img.shields.io/badge/Protocol-v2.0-white?style=flat-square&labelColor=black)](https://victoroff-group.vercel.app)
 [![Deployment](https://img.shields.io/badge/Status-Live-black?style=flat-square&logo=vercel)](https://victoroff-group.vercel.app)
 
 > Strategic Asset Architecture for the next digital epoch. Established 2026.

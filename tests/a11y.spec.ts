@@ -11,9 +11,8 @@ test.describe('Accessibility Audits', () => {
       await page.goto(pagePath);
       const builder = new AxeBuilder({ page });
       
-      // Experimental 2026 aesthetic uses subtle contrast and specific viewport settings.
-      // We allow these by design for the home page.
-      builder.disableRules(['color-contrast', 'meta-viewport']);
+      // Experimental 2026 aesthetic uses subtle contrast ratios by design.
+      builder.disableRules(['color-contrast']);
 
       const accessibilityScanResults = await builder.analyze();
       expect(accessibilityScanResults.violations).toEqual([]);
