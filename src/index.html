@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victoroff Group | Strategic Asset Architecture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..400&family=Geist:wght@100..400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000000;
+    --fg: #ffffff;
+    --text-high: #ffffff;
+    --muted: #bbbbbb;
+    --border: rgba(255, 255, 255, 0.2);
+    --font-mono: "Geist Mono", monospace;
+    --font-sans: "Geist", sans-serif;
+    --safe-area-inset-bottom: env(safe-area-inset-bottom, 20px);
+    --tap-target: 54px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; color-scheme: dark; }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #ui-grid {
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 10vw 10vw;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.1;
+  }
+
+  #navigation-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border-top: 1px solid var(--border);
+    z-index: 2000;
+    padding-bottom: var(--safe-area-inset-bottom);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .nav-tab {
+    flex: 1;
+    height: var(--tap-target);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.4s ease;
+  }
+
+  .nav-tab.active { color: var(--fg); }
+  .nav-tab svg { width: 16px; height: 16px; margin-bottom: 4px; stroke: currentColor; fill: none; stroke-width: 1.25px; }
+
+  main {
+    padding-bottom: calc(var(--tap-target) + var(--safe-area-inset-bottom) + 4rem);
+  }
+
+  section {
+    min-height: 100vh;
+    padding: 6rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-index {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .section-index::before { content: ""; width: 30px; height: 1px; background: var(--border); }
+
+  h1 { font-size: clamp(3.5rem, 14vw, 10rem); font-weight: 100; letter-spacing: -0.03em; line-height: 0.8; margin-bottom: 3rem; text-transform: uppercase; }
+  h2 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 100; letter-spacing: -0.02em; line-height: 1; margin-bottom: 2.5rem; text-transform: uppercase; }
+
+  .lead { font-size: 1.25rem; font-weight: 200; color: var(--fg); margin-bottom: 5rem; max-width: 700px; line-height: 1.5; }
+
+  /* Architectural Disclosure List (Single Column Prime) */
+  .disclosure-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-top: 1px solid var(--border);
+  }
+
+  .disclosure-item {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.6s ease;
+  }
+
+  .disclosure-item:hover { background: rgba(255, 255, 255, 0.03); }
+
+  .disclosure-trigger {
+    width: 100%;
+    padding: 2rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    color: var(--fg);
+    text-align: left;
+    cursor: pointer;
+    font-family: var(--font-sans);
+  }
+
+  .disclosure-trigger h3 {
+    font-size: 16px;
+    font-weight: 200;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .disclosure-icon {
+    font-size: 24px;
+    font-weight: 100;
+    color: var(--muted);
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .disclosure-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .disclosure-item.open .disclosure-content {
+    max-height: 400px;
+    padding-bottom: 3rem;
+  }
+
+  .disclosure-item.open .disclosure-icon {
+    transform: rotate(45deg);
+    color: var(--fg);
+  }
+
+  .disclosure-content p {
+    font-size: 15px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.8;
+    max-width: 600px;
+  }
+
+  .action-btn {
+    display: block;
+    width: 100%;
+    border: 1px solid var(--fg);
+    color: var(--fg);
+    text-align: center;
+    padding: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4em;
+    text-decoration: none;
+    margin-top: 5rem;
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .action-btn:active { background: var(--fg); color: var(--bg); }
+
+  /* Hero Metadata Style */
+  .hero-meta {
+    display: flex; 
+    align-items: flex-end; 
+    justify-content: flex-end;
+  }
+
+  .hero-meta-text {
+    font-family: var(--font-mono); 
+    font-size: 10px; 
+    color: var(--fg); 
+    opacity: 0.95; 
+    text-align: right;
+  }
+
+  /* Section Closure Style */
+  .section-closure {
+    max-width: 800px; 
+    margin: 0 auto; 
+    text-align: center;
+  }
+
+  .closure-lead {
+    margin-bottom: 4rem; 
+    color: var(--fg); 
+    opacity: 0.95; 
+    font-weight: 200; 
+    font-size: 1.2rem;
+  }
+
+  /* Form Layout */
+  .access-form {
+    display: flex; 
+    flex-direction: column; 
+    gap: 1.5rem; 
+    max-width: 600px;
+  }
+
+  .form-input {
+    background: transparent; 
+    border: none; 
+    border-bottom: 1px solid var(--border); 
+    padding: 1.5rem 0; 
+    font-family: var(--font-mono); 
+    color: white; 
+    font-size: 13px; 
+    outline: none;
+  }
+
+  /* Footer Layout */
+  .site-footer {
+    padding: 4rem 2rem; 
+    display: flex; 
+    justify-content: space-between; 
+    font-family: var(--font-mono); 
+    font-size: 10px; 
+    color: var(--fg); 
+    opacity: 0.8; 
+    text-transform: uppercase; 
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-link {
+    color: var(--fg); 
+    text-decoration: none;
+  }
+
+  /* Desktop Viewport Perfection */
+  @media (min-width: 1024px) {
+    #ui-grid { background-size: 4vw 4vw; opacity: 0.15; }
+    
+    #navigation-bar {
+      top: 0;
+      bottom: auto;
+      border-top: none;
+      border-bottom: 1px solid var(--border);
+      height: 100px;
+      padding: 0 8rem;
+      justify-content: flex-end;
+      gap: 6rem;
+    }
+
+    .nav-tab { flex: none; height: 100%; font-size: 11px; }
+    .nav-tab svg { display: none; }
+
+    main { padding-top: 100px; padding-bottom: 0; }
+    section { padding: 8rem 15vw; }
+    h1 { font-size: 8vw; }
+    h2 { font-size: 4vw; }
+    .lead { font-size: 1.6rem; max-width: 800px; }
+    
+    .disclosure-list { max-width: 1000px; }
+
+    .action-btn { width: auto; padding: 1.75rem 6rem; cursor: pointer; }
+    .action-btn:hover { background: var(--fg); color: var(--bg); }
+  }
+
+</style>
+</head>
+<body>
+
+<div id="scroll-progress" aria-hidden="true"></div>
+<div id="ui-grid"></div>
+<div role="presentation" aria-hidden="true"><canvas id="protocol-canvas"></canvas></div>
+
+<nav id="navigation-bar">
+  <a href="#hero" class="nav-tab active">Home</a>
+  <a href="#media" class="nav-tab">Media</a>
+  <a href="#systems" class="nav-tab">Systems</a>
+  <a href="#advisory" class="nav-tab">Advisory</a>
+  <a href="#archive" class="nav-tab">Archive</a>
+</nav>
+
+<main>
+  <section id="hero">
+    <div class="section-index">Established 2026</div>
+    <h1>Victoroff<br>Group</h1>
+    <p class="lead">Strategic Asset Architecture for institutions and established entities. We engineer digital authority and autonomous value.</p>
+    <a href="#access" class="action-btn">Request Access</a>
+  </section>
+
+  <section id="media">
+    <div class="section-index">I. Media</div>
+    <h2>Media</h2>
+    <p class="lead">We architect digital presence. Focusing on structural integrity and aesthetic precision, we engineer communication frameworks that establish authority.</p>
+    
+    <div class="disclosure-list">
+      <div class="disclosure-item">
+        <button class="disclosure-trigger" aria-expanded="false">
+          <h3>Bespoke Reporting</h3>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="disclosure-content">
+          <p>White-labeled, presentation-grade documentation systems designed for absolute clarity and professional delivery to high-tier stakeholders. We transform raw intelligence into refined authority.</p>
+        </div>
+      </div>
+      <div class="disclosure-item">
+        <button class="disclosure-trigger" aria-expanded="false">
+          <h3>Longitudinal Visualization</h3>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="disclosure-content">
+          <p>Advanced data visualization capturing structural evolution and historical performance tracking over extended cycles. We provide the graphical evidence of growth required for strategic decision-making.</p>
+        </div>
+      </div>
+      <div class="disclosure-item">
+        <button class="disclosure-trigger" aria-expanded="false">
+          <h3>Presence Infrastructure</h3>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="disclosure-content">
+          <p>Refining digital identity through methodical design integration and controlled, intentional positioning. Our frameworks separate signal from noise, ensuring your market presence is established and immovable.</p>
+        </div>
+      </div>
+    </div>
+    <a href="#access" class="action-btn">Initiate Presence Audit</a>
+  </section>
+
+  <section id="systems">
+    <div class="section-index">II. Systems</div>
+    <h2>Systems</h2>
+    <p class="lead">Autonomous infrastructure. We build silent, perpetual systems designed to operate at scale with seamless continuity.</p>
+    
+    <div class="disclosure-list">
+      <div class="disclosure-item">
+        <button class="disclosure-trigger" aria-expanded="false">
+          <h3>Deep-Crawl Architecture</h3>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="disclosure-content">
+          <p>Proprietary recursive indexing systems capable of holistic structural analysis across distributed digital environments. We uncover hidden bottlenecks and structural vulnerabilities through algorithmic rigor.</p>
+        </div>
+      </div>
+      <div class="disclosure-item">
+        <button class="disclosure-trigger" aria-expanded="false">
+          <h3>Automated Schedules</h3>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="disclosure-content">
+          <p>Precision-timed operational routines that execute diagnostic cycles and recurring workflows without human intervention. We engineer reliability into the foundational layer of your operations.</p>
+        </div>
+      </div>
+      <div class="disclosure-item">
+        <button class="disclosure-trigger" aria-expanded="false">
+          <h3>Organizational Scaling</h3>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="disclosure-content">
+          <p>Secure, isolated data environments accommodating sophisticated team hierarchies and multi-tiered access models. Our architecture supports expansion without compromising structural integrity.</p>
+        </div>
+      </div>
+    </div>
+    <a href="#access" class="action-btn">Request Infrastructure Build</a>
+  </section>
+
+  <section id="advisory">
+    <div class="section-index">III. Advisory</div>
+    <h2>Advisory</h2>
+    <p class="lead">Diagnostic intelligence. We provide high-level, data-driven audits identifying structural bottlenecks and optimizing pathways for digital value.</p>
+    
+    <div class="disclosure-list">
+      <div class="disclosure-item">
+        <button class="disclosure-trigger" aria-expanded="false">
+          <h3>Structural Audits</h3>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="disclosure-content">
+          <p>Comprehensive algorithmic analysis of technical performance, aesthetic cohesion, and conversion architecture. We isolate the specific inefficiencies restricting your operational capacity.</p>
+        </div>
+      </div>
+      <div class="disclosure-item">
+        <button class="disclosure-trigger" aria-expanded="false">
+          <h3>Strategic Alignment</h3>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="disclosure-content">
+          <p>Executive advisory focusing on macro-level operational synchronization and institutional longevity. We ensure your assets are aligned with long-term market objectives.</p>
+        </div>
+      </div>
+      <div class="disclosure-item">
+        <button class="disclosure-trigger" aria-expanded="false">
+          <h3>Asset Optimization</h3>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="disclosure-content">
+          <p>Targeted interventions designed to elevate the fundamental worth and operational efficiency of your digital properties. We engineer static assets into performing economic engines.</p>
+        </div>
+      </div>
+    </div>
+    <a href="#access" class="action-btn">Initialize Diagnostics</a>
+  </section>
+
+  <section id="archive">
+    <div class="section-index">IV. Archive</div>
+    <h2>Archive</h2>
+    <p class="lead">An exclusive repository of foundational frameworks, legal documentation, and standardized operational procedures.</p>
+    
+    <div class="disclosure-list">
+      <div class="disclosure-item">
+        <button class="disclosure-trigger" aria-expanded="false">
+          <h3>Proprietary Libraries</h3>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="disclosure-content">
+          <p>Highly structured, readily deployable operational templates engineered for immediate institutional integration. From strategic roadmaps to complex operational scripts.</p>
+        </div>
+      </div>
+      <div class="disclosure-item">
+        <button class="disclosure-trigger" aria-expanded="false">
+          <h3>Historical Records</h3>
+          <span class="disclosure-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="disclosure-content">
+          <p>Secured longitudinal data retaining the complete evolutionary history of organizational audits and strategic shifts. We maintain the institutional memory required for generational growth.</p>
+        </div>
+      </div>
+    </div>
+    <a href="#access" class="action-btn">Access Repository</a>
+  </section>
+
+  <section id="access">
+    <div class="section-index">Final. Authorization</div>
+    <h2>Secure Legacy.</h2>
+    <p class="lead">Review is restricted to established entities. Submit your credentials for authorization.</p>
+    
+    <form class="access-form">
+      <input type="text" placeholder="Name / Organization" class="form-input" required aria-label="Name or Organization">
+      <input type="email" placeholder="Email Address" class="form-input" required aria-label="Correspondence Email Address">
+      <button type="submit" class="action-btn" style="border:none; cursor:pointer; background:white; color:black; font-weight:bold;">Finalize Authorization</button>
+    </form>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <span>© 2026 Victoroff Group</span>
+  <span>All Rights Reserved</span>
+</footer>
+
+<script>
+  // Disclosure Logic
+  document.querySelectorAll('.disclosure-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const item = trigger.parentElement;
+      const isOpen = item.classList.contains('open');
+      
+      // Close others in same group to maintain stability
+      item.parentElement.querySelectorAll('.disclosure-item').forEach(i => {
+        if (i !== item) {
+          i.classList.remove('open');
+          i.querySelector('.disclosure-trigger').setAttribute('aria-expanded', 'false');
+        }
+      });
+      
+      if (!isOpen) {
+        item.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+      } else {
+        item.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  // IntersectionObserver for Active State (Scroll-Spy)
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.5
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        document.querySelectorAll('.nav-tab').forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${id}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('section').forEach(section => {
+    observer.observe(section);
+  });
+</script>
+
+</body>
+</html>

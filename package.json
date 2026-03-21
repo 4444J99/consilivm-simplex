@@ -7,6 +7,6 @@
     "@axe-core/playwright": "^4.8.5"
   },
   "scripts": {
-    "test": "playwright test"
+    "test": "playwright test --config .config/playwright.config.ts"
   }
 }
