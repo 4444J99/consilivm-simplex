@@ -1,8 +1,8 @@
-# VICTOROFF GROUP // MOBILE PRIME PROTOCOL
+# PADAVANO // MOBILE PRIME PROTOCOL
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-white.svg?style=flat-square)](LICENSE)
-[![Protocol](https://img.shields.io/badge/Protocol-v2.0-white?style=flat-square&labelColor=black)](https://victoroff-group.vercel.app)
-[![Deployment](https://img.shields.io/badge/Status-Live-black?style=flat-square&logo=vercel)](https://victoroff-group.vercel.app)
+[![Protocol](https://img.shields.io/badge/Protocol-v2.0-white?style=flat-square&labelColor=black)](https://consilivm-simplex.vercel.app)
+[![Deployment](https://img.shields.io/badge/Status-Live-black?style=flat-square&logo=vercel)](https://consilivm-simplex.vercel.app)
 
 > Strategic Asset Architecture for the next digital epoch. Established 2026.
 
@@ -10,7 +10,7 @@
 
 ## 00 // MOTIVATION
 
-The Victoroff Group digital presence is an architectural machine designed for quiet authority and absolute precision. It implements the **Mobile Prime Protocol**, establishing mobile-native interactions as the foundational directive while delivering a perfected secondary viewpoint for desktop environments.
+The Padavano digital presence is an architectural machine designed for quiet authority and absolute precision. It implements the **Mobile Prime Protocol**, establishing mobile-native interactions as the foundational directive while delivering a perfected secondary viewpoint for desktop environments.
 
 - **Established, not new.**
 - **Expensive, not flashy.**
@@ -84,9 +84,9 @@ npm test
 
 Inquiries regarding diagnostic intelligence and systems architecture are reviewed chronologically. Access is restricted to established entities.
 
-[Finalize Authority](https://victoroff-group.vercel.app/#close)
+[Finalize Authority](https://consilivm-simplex.vercel.app/#close)
 
 ---
 
-© 2026 VICTOROFF GROUP. ALL RIGHTS RESERVED.
+© 2026 PADAVANO. ALL RIGHTS RESERVED.
 MODULAR PROTOCOL ACTIVATED.
