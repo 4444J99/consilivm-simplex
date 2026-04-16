@@ -17,17 +17,16 @@ test.describe('Aesthetic & Language Constraints', () => {
     expect(fontFamily.toLowerCase()).toMatch(/geist|helvetica neue/);
   });
 
-  test('should exclude prohibited startup/astrological terminology', async ({ page }) => {
+  test('should exclude prohibited terminology', async ({ page }) => {
     await page.goto('/');
     const bodyText = await page.innerText('body');
-    const prohibited = ['Growth Auditor', 'astrology', 'cosmic', 'Mercury', 'Venus', 'Mars', 'Saturn'];
-    
-    // Note: Mercury/Venus/Mars/Saturn were in growth-auditor but we translated them to
-    // Media, Systems, Consulting, Archive. 
-    // We check that the growth-auditor specific branding is gone.
-    expect(bodyText).not.toContain('Growth Auditor');
-    
-    // Ensure "Quiet Authority" or architectural tone is present
-    expect(bodyText.toLowerCase()).toContain('strategic asset architecture');
+    const prohibited = ['Growth Auditor', 'Victoroff'];
+
+    for (const term of prohibited) {
+      expect(bodyText).not.toContain(term);
+    }
+
+    // Ensure Padavano brand is present (CSS text-transform may uppercase)
+    expect(bodyText.toLowerCase()).toContain('padavano');
   });
 });

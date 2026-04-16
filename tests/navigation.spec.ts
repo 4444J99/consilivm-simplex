@@ -9,10 +9,10 @@ test.describe('Navigation Link Integrity', () => {
     const navLinks = page.locator('.nav-tab');
     await expect(navLinks).toHaveCount(5);
     await expect(navLinks.nth(0)).toHaveText(/HOME/i);
-    await expect(navLinks.nth(1)).toHaveText(/MEDIA/i);
-    await expect(navLinks.nth(2)).toHaveText(/SYSTEMS/i);
-    await expect(navLinks.nth(3)).toHaveText(/ADVISORY/i);
-    await expect(navLinks.nth(4)).toHaveText(/ARCHIVE/i);
+    await expect(navLinks.nth(1)).toHaveText(/BRAND/i);
+    await expect(navLinks.nth(2)).toHaveText(/PLATFORM/i);
+    await expect(navLinks.nth(3)).toHaveText(/CONSULTING/i);
+    await expect(navLinks.nth(4)).toHaveText(/WORK/i);
   });
 
   test('should navigate to sections on index page', async ({ page }) => {

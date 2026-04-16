@@ -1,7 +1,7 @@
 {
-  "name": "consilivm-simplex",
+  "name": "padavano",
   "version": "1.0.0",
-  "description": "Strategic Asset Architecture — Padavano consulting landing page",
+  "description": "Systems Architecture & Product Engineering — Padavano consulting site",
   "devDependencies": {
     "@axe-core/playwright": "^4.8.5",
     "@playwright/test": "^1.42.0",

@@ -9,24 +9,23 @@ test.describe('Call to Action (Push to Close)', () => {
     await expect(ctas).toHaveCount(6);
   });
 
-  test('form submit button should use authoritative language', async ({ page }) => {
+  test('form submit button should be present', async ({ page }) => {
     await page.goto('/');
 
     const button = page.locator('section#access button[type="submit"]');
-    await expect(button).toHaveText(/Finalize Authorization/i);
+    await expect(button).toHaveText(/Send/i);
   });
 
-  test('all section CTAs should link to access form', async ({ page }) => {
+  test('section CTAs should link to contact or portfolio', async ({ page }) => {
     await page.goto('/');
 
-    // Non-form CTAs (hero + 4 sections) should all point to #access
     const sectionCtas = page.locator('a.action-btn');
     const count = await sectionCtas.count();
     expect(count).toBe(5);
 
     for (let i = 0; i < count; i++) {
       const href = await sectionCtas.nth(i).getAttribute('href');
-      expect(href).toBe('#access');
+      expect(href === '#access' || href?.startsWith('https://')).toBeTruthy();
     }
   });
 });

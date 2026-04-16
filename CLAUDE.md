@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Is
 
-Consilivm Simplex (Padavano) — a static single-page consulting landing site for bespoke, non-technical client engagement. It implements the "Mobile Prime Protocol" — a mobile-first design system with luxury black/white minimalism. Deployed on Vercel at `https://consilivm-simplex.vercel.app`.
+Padavano is a static single-page consulting site for Anthony James Padavano — systems architecture, product engineering, and AI orchestration. Implements the "Mobile Prime Protocol" — mobile-first design system with luxury black/white minimalism. Deployed on Vercel.
 
 ## Commands
 
@@ -51,10 +51,10 @@ Seven Playwright test files in `tests/`, run against both Desktop Chrome and Mob
 | File | What it validates |
 |------|-------------------|
 | `structure.spec.ts` | Core components, footer, design token values on `:root` |
-| `navigation.spec.ts` | 5 nav tabs, hash navigation targets |
+| `navigation.spec.ts` | 5 nav tabs (Home/Brand/Platform/Consulting/Work), hash navigation |
 | `a11y.spec.ts` | Axe accessibility audit (color-contrast disabled by design for experimental aesthetic) |
-| `aesthetic.spec.ts` | Brand compliance: black bg, white text, Geist font |
-| `cta.spec.ts` | Exactly 6 CTAs, all section CTAs link to `#access`, submit text |
+| `aesthetic.spec.ts` | Brand compliance: black bg, white text, Geist font, "padavano" in body |
+| `cta.spec.ts` | Exactly 6 CTAs, section CTAs link to `#access` or external URLs, submit text |
 | `disclosure.spec.ts` | Open/close interaction, sibling auto-close, aria-expanded state |
 | `responsive.spec.ts` | Mobile bottom nav, desktop top nav, icon visibility, 48px tap targets |
 
@@ -66,5 +66,6 @@ Enforced by both stylelint and Playwright tests — don't violate them:
 - Background must be pure black (`#000000`), text pure white (`#ffffff`)
 - All colors must use CSS custom properties, never raw hex or named colors in declarations
 - Typography must use Geist family (Sans + Mono)
-- Copy must reference "Strategic Asset Architecture"
+- Brand name is **Padavano** — never "Victoroff Group", never "Growth Auditor"
 - Tone: established, expensive, intentional, quiet — not flashy or attention-seeking
+- Footer must read: `© 2026 Anthony James Padavano`

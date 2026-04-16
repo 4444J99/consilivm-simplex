@@ -6,8 +6,7 @@ test.describe('Structural Integrity', () => {
 
     // Hero
     const h1Text = await page.innerText('h1');
-    expect(h1Text.toLowerCase()).toContain('victoroff');
-    expect(h1Text.toLowerCase()).toContain('group');
+    expect(h1Text.toLowerCase()).toContain('padavano');
 
     await expect(page.locator('.lead').first()).toBeAttached();
     await expect(page.locator('#ui-grid')).toBeAttached();
@@ -22,19 +21,18 @@ test.describe('Structural Integrity', () => {
 
     // Access Form
     await expect(page.locator('section#access form')).toBeVisible();
-    await expect(page.locator('input[type="text"]')).toBeVisible();
+    await expect(page.locator('input[type="text"]').first()).toBeVisible();
     await expect(page.locator('input[type="email"]')).toBeVisible();
     await expect(page.locator('button[type="submit"]')).toBeVisible();
   });
 
-  test('footer should display copyright and rights reserved', async ({ page }) => {
+  test('footer should display copyright', async ({ page }) => {
     await page.goto('/');
 
     const footer = page.locator('.site-footer');
     await expect(footer).toBeVisible();
     const footerText = (await footer.innerText()).toLowerCase();
-    expect(footerText).toContain('© 2026 victoroff group');
-    expect(footerText).toContain('all rights reserved');
+    expect(footerText).toContain('© 2026 anthony james padavano');
   });
 
   test('design tokens should be defined on :root', async ({ page }) => {
