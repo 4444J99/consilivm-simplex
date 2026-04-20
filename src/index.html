@@ -254,6 +254,83 @@
     font-weight: bold;
   }
 
+  /* Booking Grid */
+  .booking-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    width: 100%;
+    margin-bottom: 4rem;
+  }
+
+  .booking-card {
+    border: 1px solid var(--border);
+    padding: 2.5rem 2rem;
+    transition: border-color 0.4s ease, background 0.4s ease;
+  }
+
+  .booking-card:hover {
+    border-color: var(--fg);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .booking-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1.5rem;
+  }
+
+  .booking-card-title {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 200;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+
+  .booking-card-duration {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .booking-card-desc {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  .booking-card .action-btn {
+    margin-top: 0;
+  }
+
+  .booking-fallback {
+    border-top: 1px solid var(--border);
+    padding-top: 3rem;
+    text-align: center;
+  }
+
+  .booking-fallback-text {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2rem;
+  }
+
+  .booking-fallback .action-btn {
+    width: auto;
+    display: inline-block;
+    padding: 1.25rem 3rem;
+  }
+
   /* Footer Layout */
   .site-footer {
     padding: 4rem 2rem; 
@@ -300,6 +377,9 @@
 
     .action-btn { width: auto; padding: 1.75rem 6rem; cursor: pointer; }
     .action-btn:hover { background: var(--fg); color: var(--bg); }
+
+    .booking-grid { grid-template-columns: repeat(3, 1fr); max-width: 1200px; }
+    .booking-card .action-btn { width: 100%; padding: 1.5rem 2rem; }
   }
 
 </style>
@@ -475,16 +555,43 @@
   </section>
 
   <section id="access">
-    <div class="section-index">Contact</div>
-    <h2>Let's Build.</h2>
-    <p class="lead">Tell me what you need. I'll tell you what it takes.</p>
+    <div class="section-index">Book</div>
+    <h2>Book a<br>Consultation</h2>
+    <p class="lead">Select an engagement format. I'll confirm within 24 hours.</p>
 
-    <form class="access-form">
-      <input type="text" placeholder="Name / Organization" class="form-input" required aria-label="Name or Organization">
-      <input type="email" placeholder="Email Address" class="form-input" required aria-label="Email Address">
-      <input type="text" placeholder="What do you need built?" class="form-input" aria-label="Project Description">
-      <button type="submit" class="action-btn submit-btn">Send</button>
-    </form>
+    <div class="booking-grid">
+      <div class="booking-card">
+        <div class="booking-card-header">
+          <h3 class="booking-card-title">Discovery</h3>
+          <span class="booking-card-duration">30 min</span>
+        </div>
+        <p class="booking-card-desc">Initial conversation. You describe the problem, I assess fit and propose a path forward. No charge.</p>
+        <button type="button" class="action-btn submit-btn" data-cal-link="padavano/discovery" data-cal-config='{"theme":"dark"}'>Schedule Discovery Call</button>
+      </div>
+
+      <div class="booking-card">
+        <div class="booking-card-header">
+          <h3 class="booking-card-title">Architecture Review</h3>
+          <span class="booking-card-duration">60 min</span>
+        </div>
+        <p class="booking-card-desc">Deep audit of your technical stack, deployment pipeline, or AI integration. Actionable recommendations delivered within 48 hours.</p>
+        <button type="button" class="action-btn submit-btn" data-cal-link="padavano/architecture-review" data-cal-config='{"theme":"dark"}'>Schedule Review</button>
+      </div>
+
+      <div class="booking-card">
+        <div class="booking-card-header">
+          <h3 class="booking-card-title">Strategy Session</h3>
+          <span class="booking-card-duration">90 min</span>
+        </div>
+        <p class="booking-card-desc">End-to-end system design, AI orchestration planning, or product architecture. For teams ready to build.</p>
+        <button type="button" class="action-btn submit-btn" data-cal-link="padavano/strategy-session" data-cal-config='{"theme":"dark"}'>Schedule Strategy Session</button>
+      </div>
+    </div>
+
+    <div class="booking-fallback">
+      <p class="booking-fallback-text">Prefer email? Reach me directly.</p>
+      <a href="mailto:aj@padavano.dev" class="action-btn">aj@padavano.dev</a>
+    </div>
   </section>
 </main>
 
@@ -541,6 +648,39 @@
 
   document.querySelectorAll('section').forEach(section => {
     observer.observe(section);
+  });
+
+  // Cal.com Embed — popup mode with dark theme
+  // Configure: Replace 'padavano' with your Cal.com username
+  // Event types: /discovery, /architecture-review, /strategy-session
+  (function (C, A, L) {
+    let p = function (a, ar) { a.q.push(ar); };
+    let d = C.document;
+    C.Cal = C.Cal || function () {
+      let cal = C.Cal;
+      let ar = arguments;
+      if (!cal.loaded) {
+        cal.ns = {};
+        cal.q = cal.q || [];
+        d.head.appendChild(d.createElement("script")).src = A;
+        cal.loaded = true;
+      }
+      if (ar[0] === L) {
+        const api = function () { p(api, arguments); };
+        const namespace = ar[1];
+        api.q = api.q || [];
+        if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar);
+        return;
+      }
+      p(cal, ar);
+    };
+  })(window, "https://app.cal.com/embed/embed.js", "init");
+
+  Cal("init", { origin: "https://cal.com" });
+  Cal("ui", {
+    theme: "dark",
+    styles: { branding: { brandColor: "#ffffff" } },
+    hideEventTypeDetails: false
   });
 </script>
 

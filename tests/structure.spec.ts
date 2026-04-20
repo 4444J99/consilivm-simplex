@@ -19,11 +19,10 @@ test.describe('Structural Integrity', () => {
       await expect(page.locator(`section#${id} h2`)).toBeVisible();
     }
 
-    // Access Form
-    await expect(page.locator('section#access form')).toBeVisible();
-    await expect(page.locator('input[type="text"]').first()).toBeVisible();
-    await expect(page.locator('input[type="email"]')).toBeVisible();
-    await expect(page.locator('button[type="submit"]')).toBeVisible();
+    // Booking Section
+    await expect(page.locator('section#access .booking-grid')).toBeVisible();
+    await expect(page.locator('section#access .booking-card').first()).toBeVisible();
+    await expect(page.locator('section#access button[data-cal-link]').first()).toBeVisible();
   });
 
   test('footer should display copyright', async ({ page }) => {
