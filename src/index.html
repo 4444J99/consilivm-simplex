@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Padavano | Systems Architecture &amp; Product Engineering</title>
+<meta property="og:title" content="Anthony Padavano | Systems Architecture &amp; Technical Consulting">
+<meta property="og:description" content="Platform engineering, infrastructure automation, and AI orchestration consulting. Book a discovery call.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://padavano.dev">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..400&family=Geist:wght@100..400&display=swap" rel="stylesheet">
@@ -179,6 +184,16 @@
     max-width: 600px;
   }
 
+  .lead-price {
+    display: block;
+    margin-top: 1rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+
   .action-btn {
     display: block;
     width: 100%;
@@ -296,6 +311,15 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--muted);
+  }
+
+  .booking-card-price {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--fg);
+    margin-bottom: 1rem;
   }
 
   .booking-card-desc {
@@ -483,7 +507,7 @@
   <section id="advisory">
     <div class="section-index">III. Advisory</div>
     <h2>Consulting</h2>
-    <p class="lead">Technical strategy and system architecture. I audit what you have, design what you need, and build the bridge between them.</p>
+    <p class="lead">Technical strategy and system architecture. I audit what you have, design what you need, and build the bridge between them.<span class="lead-price">Starting at $150/hr | Project-based and retainer options available</span></p>
 
     <div class="disclosure-list">
       <div class="disclosure-item">
@@ -574,6 +598,7 @@
           <h3 class="booking-card-title">Architecture Review</h3>
           <span class="booking-card-duration">60 min</span>
         </div>
+        <p class="booking-card-price">Starting at $500</p>
         <p class="booking-card-desc">Deep audit of your technical stack, deployment pipeline, or AI integration. Actionable recommendations delivered within 48 hours.</p>
         <button type="button" class="action-btn submit-btn" data-cal-link="padavano/architecture-review" data-cal-config='{"theme":"dark"}'>Schedule Review</button>
       </div>
@@ -583,6 +608,7 @@
           <h3 class="booking-card-title">Strategy Session</h3>
           <span class="booking-card-duration">90 min</span>
         </div>
+        <p class="booking-card-price">Starting at $1,500</p>
         <p class="booking-card-desc">End-to-end system design, AI orchestration planning, or product architecture. For teams ready to build.</p>
         <button type="button" class="action-btn submit-btn" data-cal-link="padavano/strategy-session" data-cal-config='{"theme":"dark"}'>Schedule Strategy Session</button>
       </div>
