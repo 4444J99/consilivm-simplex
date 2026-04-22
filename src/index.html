@@ -212,55 +212,6 @@
 
   .action-btn:active { background: var(--fg); color: var(--bg); }
 
-  /* Hero Metadata Style */
-  .hero-meta {
-    display: flex; 
-    align-items: flex-end; 
-    justify-content: flex-end;
-  }
-
-  .hero-meta-text {
-    font-family: var(--font-mono); 
-    font-size: 10px; 
-    color: var(--fg); 
-    opacity: 0.95; 
-    text-align: right;
-  }
-
-  /* Section Closure Style */
-  .section-closure {
-    max-width: 800px; 
-    margin: 0 auto; 
-    text-align: center;
-  }
-
-  .closure-lead {
-    margin-bottom: 4rem; 
-    color: var(--fg); 
-    opacity: 0.95; 
-    font-weight: 200; 
-    font-size: 1.2rem;
-  }
-
-  /* Form Layout */
-  .access-form {
-    display: flex; 
-    flex-direction: column; 
-    gap: 1.5rem; 
-    max-width: 600px;
-  }
-
-  .form-input {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--border);
-    padding: 1.5rem 0;
-    font-family: var(--font-mono);
-    color: var(--fg);
-    font-size: 13px;
-    outline: none;
-  }
-
   .submit-btn {
     border: none;
     cursor: pointer;
@@ -410,9 +361,7 @@
 </head>
 <body>
 
-<div id="scroll-progress" aria-hidden="true"></div>
 <div id="ui-grid"></div>
-<div role="presentation" aria-hidden="true"><canvas id="protocol-canvas"></canvas></div>
 
 <nav id="navigation-bar">
   <a href="#hero" class="nav-tab active">Home</a>
