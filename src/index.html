@@ -4,11 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Padavano | Systems Architecture &amp; Product Engineering</title>
-<meta property="og:title" content="Anthony Padavano | Systems Architecture &amp; Technical Consulting">
+<meta name="description" content="Platform engineering, infrastructure automation, and AI orchestration consulting. Book a discovery call.">
+<meta property="og:title" content="Padavano | Systems Architecture &amp; Product Engineering">
 <meta property="og:description" content="Platform engineering, infrastructure automation, and AI orchestration consulting. Book a discovery call.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://padavano.dev">
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:site_name" content="Padavano">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Padavano | Systems Architecture &amp; Product Engineering">
+<meta name="twitter:description" content="Platform engineering, infrastructure automation, and AI orchestration consulting. Book a discovery call.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..400&family=Geist:wght@100..400&display=swap" rel="stylesheet">
@@ -16,7 +20,6 @@
   :root {
     --bg: #000000;
     --fg: #ffffff;
-    --text-high: #ffffff;
     --muted: #bbbbbb;
     --border: rgba(255, 255, 255, 0.2);
     --font-mono: "Geist Mono", monospace;
@@ -83,7 +86,6 @@
   }
 
   .nav-tab.active { color: var(--fg); }
-  .nav-tab svg { width: 16px; height: 16px; margin-bottom: 4px; stroke: currentColor; fill: none; stroke-width: 1.25px; }
 
   main {
     padding-bottom: calc(var(--tap-target) + var(--safe-area-inset-bottom) + 4rem);
@@ -182,6 +184,23 @@
     font-weight: 300;
     line-height: 1.8;
     max-width: 600px;
+  }
+
+  .case-study-metrics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .case-study-metric {
+    border: 1px solid var(--border);
+    padding: 0.45rem 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--fg);
   }
 
   .lead-price {
@@ -340,7 +359,6 @@
     }
 
     .nav-tab { flex: none; height: 100%; font-size: 11px; }
-    .nav-tab svg { display: none; }
 
     main { padding-top: 100px; padding-bottom: 0; }
     section { padding: 8rem 15vw; }
@@ -502,7 +520,12 @@
           <span class="disclosure-icon" aria-hidden="true">+</span>
         </button>
         <div class="disclosure-content">
-          <p>UCC-MCA lead generation with automated outreach, competitive intelligence, and pre-call briefings. 526 tests. Express + React + PostgreSQL + Puppeteer. Deployed on Render and Netlify.</p>
+          <div class="case-study-metrics">
+            <span class="case-study-metric">526 tests</span>
+            <span class="case-study-metric">Express + React</span>
+            <span class="case-study-metric">Render + Netlify</span>
+          </div>
+          <p>UCC-MCA lead generation with automated outreach, competitive intelligence, and pre-call briefings. PostgreSQL-backed workflow automation carries each lead from prospect discovery through pre-call preparation.</p>
         </div>
       </div>
       <div class="disclosure-item">
@@ -511,7 +534,12 @@
           <span class="disclosure-icon" aria-hidden="true">+</span>
         </button>
         <div class="disclosure-content">
-          <p>AI-powered content generation across 5 platforms. 7 provider integrations with free-first strategy — runs full metabolism on local models at zero API cost. Cloudflare Workers + Neon PostgreSQL.</p>
+          <div class="case-study-metrics">
+            <span class="case-study-metric">5 platforms</span>
+            <span class="case-study-metric">7 providers</span>
+            <span class="case-study-metric">Zero API baseline</span>
+          </div>
+          <p>AI-powered content generation and distribution across a multi-provider stack. Cloudflare Workers orchestrate local-model execution, routing, and Neon PostgreSQL state without forcing paid API usage.</p>
         </div>
       </div>
       <div class="disclosure-item">
@@ -520,7 +548,12 @@
           <span class="disclosure-icon" aria-hidden="true">+</span>
         </button>
         <div class="disclosure-content">
-          <p>Production multi-agent system coordinating Claude, GPT, and Gemini across 145 repositories. Fleet routing, cross-verification, session lifecycle management. 1,095 tests on the framework alone.</p>
+          <div class="case-study-metrics">
+            <span class="case-study-metric">145 repositories</span>
+            <span class="case-study-metric">1,095 tests</span>
+            <span class="case-study-metric">Claude + GPT + Gemini</span>
+          </div>
+          <p>Production multi-agent routing with cross-verification, session lifecycle management, and fleet coordination across a large active repository set.</p>
         </div>
       </div>
     </div>
@@ -538,7 +571,8 @@
           <h3 class="booking-card-title">Discovery</h3>
           <span class="booking-card-duration">30 min</span>
         </div>
-        <p class="booking-card-desc">Initial conversation. You describe the problem, I assess fit and propose a path forward. No charge.</p>
+        <p class="booking-card-price">No charge</p>
+        <p class="booking-card-desc">Initial conversation. You describe the problem, I assess fit, and I propose a path forward.</p>
         <button type="button" class="action-btn submit-btn" data-cal-link="padavano/discovery" data-cal-config='{"theme":"dark"}'>Schedule Discovery Call</button>
       </div>
 
@@ -547,7 +581,7 @@
           <h3 class="booking-card-title">Architecture Review</h3>
           <span class="booking-card-duration">60 min</span>
         </div>
-        <p class="booking-card-price">Starting at $500</p>
+        <p class="booking-card-price">From $500</p>
         <p class="booking-card-desc">Deep audit of your technical stack, deployment pipeline, or AI integration. Actionable recommendations delivered within 48 hours.</p>
         <button type="button" class="action-btn submit-btn" data-cal-link="padavano/architecture-review" data-cal-config='{"theme":"dark"}'>Schedule Review</button>
       </div>
@@ -557,7 +591,7 @@
           <h3 class="booking-card-title">Strategy Session</h3>
           <span class="booking-card-duration">90 min</span>
         </div>
-        <p class="booking-card-price">Starting at $1,500</p>
+        <p class="booking-card-price">From $1,500</p>
         <p class="booking-card-desc">End-to-end system design, AI orchestration planning, or product architecture. For teams ready to build.</p>
         <button type="button" class="action-btn submit-btn" data-cal-link="padavano/strategy-session" data-cal-config='{"theme":"dark"}'>Schedule Strategy Session</button>
       </div>
